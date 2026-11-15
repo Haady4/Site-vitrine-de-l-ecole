@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Accueil - UFR STA{% endblock %}
+
+{% block content %}
+<header class="hero">
+    <h1>Bienvenue à l'UFR STA</h1>
+    <p>Inculquer l'excellence scientifique pour concevoir les technologies de demain.</p>
+</header>
+
+<section class="director-word">
+    <img src="{{ url_for('static', filename='images/photo_directeur.jpeg') }}" alt="Photo du Directeur" class="director-img">
+    <div>
+        <h2>Mot du Directeur</h2>
+        <div class="director-quote">
+            "Bienvenue sur la vitrine officielle de l'UFR STA. Notre engagement est d'offrir des formations rigoureuses, en adéquation avec les mutations numériques et industrielles mondiales."
+        </div>
+        <p class="director-signature">— Direction de l'UFR STA</p>
+    </div>
+</section>
+
+<section>
+    <div class="page-header">
+        <h2>Dernières Actualités</h2>
+    </div>
+    <div class="grid-3">
+        {% for actu in actualites %}
+        <article class="card">
+            <div class="card-content">
+                <span class="date-badge">{{ actu.date.strftime('%d/%m/%Y') }}</span>
+                <h3 class="card-title">{{ actu.titre }}</h3>
+                <p>{{ actu.description }}</p>
+            </div>
+        </article>
+        {% else %}
+        <p>Aucune actualité publiée pour le moment.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
